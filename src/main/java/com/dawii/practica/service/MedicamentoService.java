@@ -11,5 +11,9 @@ public interface MedicamentoService {
 
     public Optional<Medicamento> obtenerPorId(int idMedicamento);
 
+    public List<Medicamento> obtenerPorStock(int stock);
+
+    public List<Medicamento> obtenerPorNombre(String nombre);
+
     public void eliminarMedicamento(int idMedicamento);
 }

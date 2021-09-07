@@ -33,4 +33,14 @@ public class MedicamentoServiceImpl implements MedicamentoService {
         repository.deleteById(idMedicamento);
     }
 
+    @Override
+    public List<Medicamento> obtenerPorStock(int stock) {
+        return repository.findByStock(stock);
+    }
+
+    @Override
+    public List<Medicamento> obtenerPorNombre(String nombre) {
+        return repository.findByNombreLike(nombre);
+    }
+
 }
