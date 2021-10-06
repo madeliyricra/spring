@@ -1,5 +1,6 @@
 package com.empresa.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,32 +29,43 @@ public class DocenteController {
 	@Autowired
 	private DocenteService docenteService;
 
-	@GetMapping
-	@ResponseBody
-	public ResponseEntity<List<Docente>> listaDocente() {
-		List<Docente> lista = docenteService.listaDocente();
-		return ResponseEntity.ok(lista);
-	}
+	// @GetMapping
+	// @ResponseBody
+	// public ResponseEntity<List<Docente>> listaDocente() {
+	// 	List<Docente> lista = docenteService.listaDocente();
+	// 	return ResponseEntity.ok(lista);
+	// }
 
 
-	@GetMapping (path = "/filtro",params = {"nombre"})
-	@ResponseBody
-	public ResponseEntity<List<Docente>> listaDocentePorNombreLike(@RequestParam("nombre") String nombre) {
-		List<Docente> lista = docenteService.listaDocentePorNombreLike(nombre+"%");
-		return ResponseEntity.ok(lista);
-	}
+	// @GetMapping (path = "/filtro",params = {"nombre"})
+	// @ResponseBody
+	// public ResponseEntity<List<Docente>> listaDocentePorNombreLike(@RequestParam("nombre") String nombre) {
+	// 	List<Docente> lista = docenteService.listaDocentePorNombreLike("%"+nombre+"%");
+	// 	return ResponseEntity.ok(lista);
+	// }
 
-	@GetMapping (path = "/filtro",params = {"dni"})
-	@ResponseBody
-	public ResponseEntity<List<Docente>> listaDocentePorDni(@RequestParam("dni") String dni) {
-		List<Docente> lista = docenteService.listaDocentePorDni(dni);
-		return ResponseEntity.ok(lista);
-	}
+	// @GetMapping (path = "/filtro",params = {"dni"})
+	// @ResponseBody
+	// public ResponseEntity<List<Docente>> listaDocentePorDni(@RequestParam("dni") String dni) {
+	// 	List<Docente> lista = docenteService.listaDocentePorDni(dni);
+	// 	return ResponseEntity.ok(lista);
+	// }
 
 	@GetMapping (path = "/filtro",params = {"nombre", "dni"})
 	@ResponseBody
-	public ResponseEntity<List<Docente>> listaDocentePorNombreAndDni2(@RequestParam("nombre") String nombre, @RequestParam("dni") String dni) {
-		List<Docente> lista = docenteService.listaDocentePorNombreYDni(nombre, dni);
+	public ResponseEntity<List<Docente>> listaDocentePorNombreAndDni(@RequestParam("nombre") String nombre, @RequestParam("dni") String dni) {
+		List<Docente> lista=new ArrayList<Docente>();
+		if(!nombre.isEmpty() && !dni.isEmpty()){
+			lista = docenteService.listaDocentePorNombreYDni(nombre, dni);
+		}else{
+			if(!nombre.isEmpty()){
+				lista = docenteService.listaDocentePorNombreLike("%"+nombre+"%");
+			}else if(!dni.isEmpty()){
+				lista = docenteService.listaDocentePorDni(dni);
+			}else{
+				lista = docenteService.listaDocente();
+			}
+		}
 		return ResponseEntity.ok(lista);
 	}
 
