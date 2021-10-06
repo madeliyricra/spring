@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-DawiiSesion05BackendFinalizadoApplication<DAWII-Sesion05BackendFinalizado>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.empresa.DawiiSesion05BackendFinalizadoApplication",
+      "projectName": "DAWII-Sesion05BackendFinalizado",
+      "args": ""
+    }
+  ]
+}
