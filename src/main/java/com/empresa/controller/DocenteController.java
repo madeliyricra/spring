@@ -29,12 +29,12 @@ public class DocenteController {
 	@Autowired
 	private DocenteService docenteService;
 
-	// @GetMapping
-	// @ResponseBody
-	// public ResponseEntity<List<Docente>> listaDocente() {
-	// 	List<Docente> lista = docenteService.listaDocente();
-	// 	return ResponseEntity.ok(lista);
-	// }
+	@GetMapping
+	@ResponseBody
+	public ResponseEntity<List<Docente>> listaDocente() {
+		List<Docente> lista = docenteService.listaDocente();
+		return ResponseEntity.ok(lista);
+	}
 
 
 	// @GetMapping (path = "/filtro",params = {"nombre"})
